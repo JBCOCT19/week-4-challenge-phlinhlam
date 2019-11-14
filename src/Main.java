@@ -85,7 +85,6 @@ public class Main {
                                     break;
                                 case 7:
                                     enrollStudent();
-                                    showStudent();
                                     break;
                                 case 8:
                                     assignFacultyToClass();
@@ -114,26 +113,26 @@ public class Main {
     public static void populateDatabase()
     {
         Faculty f1 = new Faculty();
-        f1.setId("F-004");
+        f1.setId("F-001");
         f1.setName("George Karabatis");
         faculties.add(f1);
         Faculty f2 = new Faculty();
-        f2.setId("F-005");
+        f2.setId("F-002");
         f2.setName("Tate Redding");
         faculties.add(f2);
 
         Student s1 = new Student();
-        s1.setId("S-004");
+        s1.setId("S-001");
         s1.setName("Shannon W.");
         students.add(s1);
         Student s2 = new Student();
-        s2.setId("S-005");
+        s2.setId("S-002");
         s2.setName("Madison Santizo");
         students.add(s2);
 
-        Class c1 = new Class("C-004","Databse Management","Introduction to Database");
+        Class c1 = new Class("C-001","Database Management","Introduction to Database");
         classes.add(c1);
-        Class c2 = new Class("C-005","Data Analytics","Collecting Data and stuff");
+        Class c2 = new Class("C-002","Data Analytics","Collecting Data and stuff");
         classes.add(c2);
 
     }
@@ -143,13 +142,13 @@ public class Main {
         System.out.print("Please enter ID for Student-Class connection");
         String conID = kb.nextLine();
         studClassC.setStudConID(conID);
-        System.out.println("Student ID");
+        System.out.println("Please enter Student ID");
         String facID = kb.nextLine();
         studClassC.setStudConID(facID);
-        System.out.println("Class ID");
+        System.out.println("Please enter Class ID");
         String classID = kb.nextLine();
         studClassC.setClassConID(classID);
-        System.out.println("Enter today's date (MM-DD-YYYY)");
+        System.out.println("Please enter Date of enrollment (MM/DD/YYYY)");
         String date = kb.nextLine();
         studClassC.setDateEnroll(date);
         studentClassConnections.add(studClassC);
@@ -160,17 +159,17 @@ public class Main {
         System.out.print("Please enter ID for Faculty-Class connection");
         String conID = kb.nextLine();
         fcc.setFcConnID(conID);
-        System.out.println("Faculty ID");
+        System.out.println("Please enter Faculty ID");
         String facID = kb.nextLine();
         fcc.setFacID(facID);
-        System.out.println("Class ID");
+        System.out.println("Please enter Class ID");
         String classID = kb.nextLine();
         fcc.setFacClassConID(classID);
         facultyClassConnections.add(fcc);
     }
     public static void editFaculty() {
         Scanner kb = new Scanner(System.in);
-        System.out.println("Please enter the ID of the Faculty that you wish to edit (F-###)");
+        System.out.println("Please enter the ID of the Faculty that you wish to edit their name (F-###)");
         String id = kb.nextLine();
         for (Faculty f : faculties) {//go into faculties database,
             if (f.getId().equalsIgnoreCase(id)) {//compare is with user id, if it's equal, do the execution
@@ -182,7 +181,7 @@ public class Main {
     }
     public static void editStudent() {
         Scanner kb = new Scanner(System.in);
-        System.out.println("Please enter the ID of the Student that you wish to edit (S-###)");
+        System.out.println("Please enter the ID of the Student that you wish to edit their name(S-###)");
         String id = kb.nextLine();
         for (Student s : students) {//go into students database,
             if (s.getId().equalsIgnoreCase(id)) {//compare is with user id, if it's equal, do the execution
@@ -195,12 +194,12 @@ public class Main {
     public static void editClasses()
     {
         Scanner kb = new Scanner(System.in);
-        System.out.println("Please enter the ID of the class that you wish to edit (C-###)");
+        System.out.println("Please enter the ID of the class that you wish to edit its description (C-###)");
         String id = kb.nextLine();
         for(Class c : classes) {//go into classes database,
                 if(c.getClassID().equalsIgnoreCase(id)) {//compare is with user id, if it's equal, do the execution
-                        System.out.println("Enter new name of the class:");
-                        c.setClassName(kb.nextLine());
+                        System.out.println("Enter new description for " +c.getClassName());
+                        c.setDescription(kb.nextLine());
                         break;
                     }
         }//end for loop
@@ -273,22 +272,22 @@ public class Main {
 
             public static void showInformation() {
                 System.out.println("---------------------------------");
-                System.out.println("All Students");
+                System.out.println("ALL STUDENTS");
                 for (Student s : students) {
                     System.out.println(s.toString());
                 }
                 System.out.println("---------------------------------");
-                System.out.println("All Faculties");
+                System.out.println("ALL FACULTIES");
                 for (Faculty f : faculties) {
                     System.out.println(f.toString());
                 }
                 System.out.println("---------------------------------");
-                System.out.println("All Classes");
+                System.out.println("ALL CLASSES");
                 for (Class c : classes) {
                     System.out.println(c.toString());
                 }
                 System.out.println("---------------------------------");
-                System.out.println("Faculties and Classes that they teach");
+                System.out.println("CLASSES TAUGHT BY FACULTIES");
                 for (FacultyClassConnection fcc : facultyClassConnections) {
                     for (Faculty f : faculties) {
                         if (fcc.getFacID().equalsIgnoreCase(f.getId())) {
@@ -303,9 +302,10 @@ public class Main {
                             break;
                         }
                     }
+                    System.out.println(" ");
                 }//end big for
                 System.out.println("---------------------------------");
-                System.out.println("Student and Class that they enroll in");
+                System.out.println("STUDENT ENROLLMENT");
                 for (StudentClassConnection scc : studentClassConnections) {
                     for (Student s: students) {
                         if (scc.getStudConID().equalsIgnoreCase(s.getId())) {
@@ -320,6 +320,7 @@ public class Main {
                         }
                     }
                     System.out.println("Date enrolled: "+scc.getDateEnroll());
+                    System.out.println(" ");
                 }//end big for
             }//end showInfo method
 
