@@ -86,7 +86,7 @@ public class Main {
                                 editClasses();
                                 break;
                             case 7:
-                                System.out.println("enroll student");
+                                enrollStudent();
                                 break;
                             case 8:
                                 assignFacultyToClass();
@@ -112,7 +112,20 @@ public class Main {
 
     }//end main
 
-
+    public static void enrollStudent(){
+        StudentClassConnection studClassC = new StudentClassConnection();
+        Scanner kb = new Scanner(System.in);
+        System.out.print("Please enter ID for Student-Class connection");
+        String conID = kb.nextLine();
+        studClassC.setStudConID(conID);
+        System.out.println("Student ID");
+        String facID = kb.nextLine();
+        studClassC.setStudConID(facID);
+        System.out.println("Class ID");
+        String classID = kb.nextLine();
+        studClassC.setClassConID(classID);
+        studentClassConnections.add(studClassC);
+    }
     public static void assignFacultyToClass(){
         FacultyClassConnection fcc = new FacultyClassConnection();
         Scanner kb = new Scanner(System.in);
@@ -238,6 +251,23 @@ public class Main {
                     }
                     for (Class c : classes) {
                         if (fcc.getFacClassConID().equalsIgnoreCase(c.getClassID())) {
+                            System.out.println("Class: " + c.getClassName());
+                            break;
+                        }
+                    }
+                }//end big for
+
+                System.out.println("-------------------------");
+                System.out.println("Student and Class that they enroll in");
+                for (StudentClassConnection scc : studentClassConnections) {
+                    for (Student s: students) {
+                        if (scc.getStudConID().equalsIgnoreCase(s.getId())) {
+                            System.out.println("Student Name: " + s.getName());
+                            break;
+                        }
+                    }
+                    for (Class c : classes) {
+                        if (scc.getClassConID().equalsIgnoreCase(c.getClassID())) {
                             System.out.println("Class: " + c.getClassName());
                             break;
                         }
