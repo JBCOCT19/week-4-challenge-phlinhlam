@@ -1,8 +1,8 @@
 public class FacultyClassConnection {
 
     private String fcConnID;
-    private String facID;
-    private String facClassConID;
+    private String facID;//faculty
+    private String facClassConID;//class
 
     public FacultyClassConnection() {
     }

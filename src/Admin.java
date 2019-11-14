@@ -15,8 +15,8 @@ public class Admin extends User {
         System.out.println("4. Edit faculty");
         System.out.println("5. Add class");
         System.out.println("6. Edit class");
-        System.out.println("7. Enroll student");
-        System.out.println("8. Hire a faculty");
+        System.out.println("7. Enroll student in a class");
+        System.out.println("8. Assign faculty to a class");
         System.out.println("9. View all information");
         System.out.println("10. to quit");
     }

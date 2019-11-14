@@ -89,7 +89,7 @@ public class Main {
                                 System.out.println("enroll student");
                                 break;
                             case 8:
-                                System.out.println("Hire a faculty");
+                                assignFacultyToClass();
                                 break;
                             case 9:
                                 System.out.println("View all information");
@@ -112,6 +112,21 @@ public class Main {
 
     }//end main
 
+
+    public static void assignFacultyToClass(){
+        FacultyClassConnection fcc = new FacultyClassConnection();
+        Scanner kb = new Scanner(System.in);
+        System.out.print("Please enter ID for Faculty-Class connection");
+        String conID = kb.nextLine();
+        fcc.setFcConnID(conID);
+        System.out.println("Faculty ID");
+        String facID = kb.nextLine();
+        fcc.setFacID(facID);
+        System.out.println("Class ID");
+        String classID = kb.nextLine();
+        fcc.setFacClassConID(classID);
+        facultyClassConnections.add(fcc);
+    }
     public static void editFaculty() {
         Scanner kb = new Scanner(System.in);
         System.out.println("Please enter the ID of the Faculty that you wish to edit (F-###)");
@@ -189,33 +204,46 @@ public class Main {
                 students.add(s);//add student info in students database
             }
 
-            public static void showInformation()
-            {
+            public static void showInformation() {
                 System.out.println("-------------------------");
                 System.out.println("All students");
-                for(Student s:students)
-                {
-                    System.out.println("Student ID: "+s.getId());
-                    System.out.println("Student Name "+s.getName());
+                for (Student s : students) {
+                    System.out.println("Student ID: " + s.getId());
+                    System.out.println("Student Name " + s.getName());
                     System.out.println(" ");
                 }
                 System.out.println("-------------------------");
                 System.out.println("All faculties");
-                for(Faculty f: faculties)
-                {
-                    System.out.println("Faculty ID: "+f.getId());
-                    System.out.println("Faculty Name: "+f.getName());
+                for (Faculty f : faculties) {
+                    System.out.println("Faculty ID: " + f.getId());
+                    System.out.println("Faculty Name: " + f.getName());
                     System.out.println(" ");
                 }
                 System.out.println("-------------------------");
                 System.out.println("All classes");
-                for(Class c : classes)
-                {
-                    System.out.println("Class ID: "+c.getClassID());
-                    System.out.println("Class Name: "+c.getClassName());
-                    System.out.println("Class Description: "+c.getDescription());
+                for (Class c : classes) {
+                    System.out.println("Class ID: " + c.getClassID());
+                    System.out.println("Class Name: " + c.getClassName());
+                    System.out.println("Class Description: " + c.getDescription());
                     System.out.println(" ");
                 }
-            }
+                System.out.println("-------------------------");
+                System.out.println("Faculties and Classes that they teach");
+                for (FacultyClassConnection fcc : facultyClassConnections) {
+                    for (Faculty f : faculties) {
+                        if (fcc.getFacID().equalsIgnoreCase(f.getId())) {
+                            System.out.println("Faculty Name: " + f.getName());
+                            break;
+                        }
+                    }
+                    for (Class c : classes) {
+                        if (fcc.getFacClassConID().equalsIgnoreCase(c.getClassID())) {
+                            System.out.println("Class: " + c.getClassName());
+                            break;
+                        }
+                    }
+                }//end big for
+            }//end showInfo method
+
 
 }
