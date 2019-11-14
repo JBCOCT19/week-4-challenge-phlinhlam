@@ -36,4 +36,6 @@ public class FacultyClassConnection {
     public void setFacClassConID(String facClassConID) {
         this.facClassConID = facClassConID;
     }
+
+
 }

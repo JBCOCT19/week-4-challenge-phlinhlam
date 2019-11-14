@@ -9,7 +9,7 @@ public class Admin extends User {
 
     public void showOptions()
     {
-        System.out.println("Options: ");
+        System.out.println("What would you like to do? ");
         System.out.println("1. Add student");
         System.out.println("2. Add faculty");
         System.out.println("3. Edit student");
@@ -19,6 +19,6 @@ public class Admin extends User {
         System.out.println("7. Enroll student in a class");
         System.out.println("8. Assign faculty to a class");
         System.out.println("9. View all information");
-        System.out.println("10. to quit");
+        System.out.println("10. Log Out");
     }
 }

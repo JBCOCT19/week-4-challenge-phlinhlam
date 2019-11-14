@@ -37,8 +37,7 @@ public class Class {
     }
     @Override
     public String toString() {
-        return "-------------------------" +"\n" +
-                "All Classes" + "\n" +
+        return
                 "Class ID: " + getClassID() +"\n"+
                 "Class Name: " + getClassName() + "\n";
     }

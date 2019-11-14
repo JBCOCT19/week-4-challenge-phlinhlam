@@ -12,8 +12,7 @@ public class Student extends User {
 
     @Override
     public String toString() {
-        return "-------------------------" +"\n" +
-                "All Students" + "\n" +
+        return
                 "Student ID: " + getId() +"\n"+
                 "Student Name: " + getName() + "\n";
     }

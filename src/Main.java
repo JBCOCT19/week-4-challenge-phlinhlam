@@ -9,111 +9,125 @@ public class Main {
     public static ArrayList<Admin> admins = new ArrayList<>();
     public static ArrayList<StudentClassConnection> studentClassConnections = new ArrayList<>();
     public static ArrayList<FacultyClassConnection> facultyClassConnections = new ArrayList<>();
-
+    public static String em = " ";
+    public static String pass = " ";
     public static void main(String[] args) {
         //populate Admin account
-        Admin admin = new Admin();
-        admin.setId("Ad-001");
-        admin.setEmail("admin1@email.com");
-        admin.setName("Leeo Bee");
-        admin.setPassword("password");
+        Admin admin = new Admin("Ad-001","Leeo Bee","admin1@email.com","password");
         admins.add(admin);
         //populate classes,students,and faculties
         populateDatabase();
-
         Scanner kb = new Scanner(System.in);
         String yesNo = " ";
         String choose = " ";
+
+        boolean correct = true;
         System.out.println("Welcome to Bee's School System!");
         System.out.println("Would you like to log in? (Y/N)");
         yesNo = kb.next();
-        String em = " ";
-        String pass = " ";
-        if (yesNo.equalsIgnoreCase("y")) {
+
+        if(yesNo.equalsIgnoreCase("n"))
+        {
+            System.out.println("Thank you for using Bee's School System");
+        }
+        else if (yesNo.equalsIgnoreCase("y")) {
             System.out.println("Would you like to log in as an (A)dmin, (F)aculty, or (S)tudent?");
             System.out.println("Please choose A");
             choose = kb.next();
         }
-            if(choose.equalsIgnoreCase("a"))
-            {
+            if(choose.equalsIgnoreCase("a")) {
                 System.out.println("Welcome admin ");
                 System.out.println("Please enter your email:");
                 em = kb.next();
                 System.out.println("Please enter your password");
                 pass = kb.next();
                 //check log in credentials
-                for(Admin a : admins)
-                {
-                    if (!a.getEmail().equalsIgnoreCase(em) || !a.getPassword().equalsIgnoreCase(pass))
-                    {
-                        System.out.println("Invalid email and/or password");
-                        break;
-                    }
-                    else if(a.getEmail().equalsIgnoreCase(em) || a.getPassword().equalsIgnoreCase(pass))
-                    {
-                        System.out.println("Admin " + admin.getName());
-                        System.out.println("You have successfully logged in");
+                for (Admin a : admins) {
+                   while (!a.getEmail().equalsIgnoreCase(em) || !a.getPassword().equalsIgnoreCase(pass)) {
+                       System.out.println("Invalid email and/or password");
+                       System.out.println(" ");
+                       System.out.println("Please re-enter your email:");
+                       em = kb.next();
+                       System.out.println("Please re-enter your password");
+                       pass = kb.next();
+                   }//end while
+                    if (a.getEmail().equalsIgnoreCase(em) && a.getPassword().equalsIgnoreCase(pass)) {
+                        System.out.println("==========================================");
+                        System.out.println("Admin "+a.getName()+" - You have successfully logged in");
                         System.out.println(" ");
-                        do{
-                        admin.showOptions();
-                        int choice = kb.nextInt();
-                        switch (choice) {
-                            case 1:
-                                addStudent();
-                                break;
-                            case 2:
-                                addFaculty();
-                                break;
-                            case 3:
-                                editStudent();
-                                break;
-                            case 4:
-                                editFaculty();
-                                break;
-                            case 5:
-                                addClasses();
-                                break;
-                            case 6:
-                                editClasses();
-                                break;
-                            case 7:
-                                enrollStudent();
-                                break;
-                            case 8:
-                                assignFacultyToClass();
-                                break;
-                            case 9:
-                                System.out.println("View all information");
-                                showInformation();
-                                break;
-                            case 10:
-                                System.out.println("Quit");
-                                break;
-                        }//end switch
+                        do {
+                            admin.showOptions();
+                            int choice = kb.nextInt();
+                            switch (choice) {
+                                case 1:
+                                    addStudent();
+                                    break;
+                                case 2:
+                                    addFaculty();
+                                    break;
+                                case 3:
+                                    editStudent();
+                                    break;
+                                case 4:
+                                    editFaculty();
+                                    break;
+                                case 5:
+                                    addClasses();
+                                    break;
+                                case 6:
+                                    editClasses();
+                                    break;
+                                case 7:
+                                    enrollStudent();
+                                    break;
+                                case 8:
+                                    assignFacultyToClass();
+                                    break;
+                                case 9:
+                                    System.out.println("View all information");
+                                    showInformation();
+                                    break;
+                                case 10:
+                                    System.out.println(a.getName() + ", you have successfully logged out");
+                                    System.out.println("Thank you for using Bee's School Systems");
+                                    System.exit(0);
+                                    break;
+                            }//end switch
                             System.out.println("Do you want to continue? (Y/N)");
                             yesNo = kb.next();
                             System.out.println("");
                         } while (yesNo.equalsIgnoreCase("y"));
                         System.out.println("Thank you for using Bee's School Systems");
-                    }//end else if
+                    }//end if log in is correct
                 }//end for
-
-        }//end big if
-
-
+            }//end if user choose a
     }//end main
+
     public static void populateDatabase()
     {
         Faculty f1 = new Faculty();
-        f1.setId("F-005");
+        f1.setId("F-004");
         f1.setName("George Karabatis");
         faculties.add(f1);
+        Faculty f2 = new Faculty();
+        f2.setId("F-005");
+        f2.setName("Tate Redding");
+        faculties.add(f2);
+
         Student s1 = new Student();
-        s1.setId("S-005");
+        s1.setId("S-004");
         s1.setName("Shannon W.");
         students.add(s1);
-        Class c1 = new Class("C-005","Databse Management","Introduction to Database");
+        Student s2 = new Student();
+        s2.setId("S-005");
+        s2.setName("Madison Santizo");
+        students.add(s2);
+
+        Class c1 = new Class("C-004","Databse Management","Introduction to Database");
         classes.add(c1);
+        Class c2 = new Class("C-005","Data Analytics","Collecting Data and stuff");
+        classes.add(c2);
+
     }
     public static void enrollStudent(){
         StudentClassConnection studClassC = new StudentClassConnection();
@@ -127,6 +141,9 @@ public class Main {
         System.out.println("Class ID");
         String classID = kb.nextLine();
         studClassC.setClassConID(classID);
+        System.out.println("Enter today's date (MM-DD-YYYY)");
+        String date = kb.nextLine();
+        studClassC.setDateEnroll(date);
         studentClassConnections.add(studClassC);
     }
     public static void assignFacultyToClass(){
@@ -221,21 +238,27 @@ public class Main {
             }
 
             public static void showInformation() {
+                System.out.println("---------------------------------");
+                System.out.println("All Students");
                 for (Student s : students) {
                     System.out.println(s.toString());
                 }
+                System.out.println("---------------------------------");
+                System.out.println("All Faculties");
                 for (Faculty f : faculties) {
                     System.out.println(f.toString());
                 }
-
+                System.out.println("---------------------------------");
+                System.out.println("All Classes");
                 for (Class c : classes) {
                     System.out.println(c.toString());
                 }
-                System.out.println("-------------------------");
+                System.out.println("---------------------------------");
                 System.out.println("Faculties and Classes that they teach");
                 for (FacultyClassConnection fcc : facultyClassConnections) {
                     for (Faculty f : faculties) {
                         if (fcc.getFacID().equalsIgnoreCase(f.getId())) {
+                            System.out.println("Faculty iD: " + f.getId());
                             System.out.println("Faculty Name: " + f.getName());
                             break;
                         }
@@ -247,7 +270,7 @@ public class Main {
                         }
                     }
                 }//end big for
-                System.out.println("-------------------------");
+                System.out.println("---------------------------------");
                 System.out.println("Student and Class that they enroll in");
                 for (StudentClassConnection scc : studentClassConnections) {
                     for (Student s: students) {
@@ -262,6 +285,7 @@ public class Main {
                             break;
                         }
                     }
+                    System.out.println("Date enrolled: "+scc.getDateEnroll());
                 }//end big for
             }//end showInfo method
 

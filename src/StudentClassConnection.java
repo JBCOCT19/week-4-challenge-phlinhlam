@@ -8,10 +8,11 @@ public class StudentClassConnection {
     public StudentClassConnection() {
     }
 
-    public StudentClassConnection(String studClassID, String studConID, String classConID) {
+    public StudentClassConnection(String studClassID, String studConID, String classConID, String dateEnroll) {
         this.studClassID = studClassID;
         this.studConID = studConID;
         this.classConID = classConID;
+        this.dateEnroll = dateEnroll;
     }
 
 
