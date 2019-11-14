@@ -34,7 +34,7 @@ public class Main {
         }
             if(choose.equalsIgnoreCase("a"))
             {
-                System.out.println("Welcome Admin");
+                System.out.println("Welcome admin ");
                 System.out.println("Please enter your email:");
                 em = kb.next();
                 System.out.println("Please enter your password");
@@ -49,13 +49,15 @@ public class Main {
                     }
                     else if(a.getEmail().equalsIgnoreCase(em) || a.getPassword().equalsIgnoreCase(pass))
                     {
-                        System.out.println("You have logged in as an admin");
+                        System.out.println("Admin " + admin.getName());
+                        System.out.println("You have successfully logged in");
+                        System.out.println(" ");
                         do{
                         admin.showOptions();
                         int choice = kb.nextInt();
                         switch (choice) {
                             case 1:
-                                System.out.println("Add student method");
+                                addStudent();
                                 break;
                             case 2:
                                 System.out.println("Add faculty method");
@@ -80,6 +82,7 @@ public class Main {
                                 break;
                             case 9:
                                 System.out.println("View all information");
+                                showInformation();
                                 break;
                             case 10:
                                 System.out.println("Quit");
@@ -97,5 +100,29 @@ public class Main {
 
     }//end main
 
+        public static void addStudent()
+        {
+                Student s = new Student();
+                Scanner kb = new Scanner(System.in);
+                System.out.println("Please enter the student ID (S-####)");
+                String id = kb.nextLine();
+                s.setId(id);
+                System.out.println("Student Name");
+                String name = kb.nextLine();
+                s.setName(name);
+                students.add(s);//add student info in students database
+            }
+
+            public static void showInformation()
+            {
+
+                System.out.println("All students");
+                for(Student s:students)
+                {
+                    System.out.println(s.getId());
+                    System.out.println(s.getName());
+                    System.out.println(" ");
+                }
+            }
 
 }
