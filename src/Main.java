@@ -18,17 +18,8 @@ public class Main {
         admin.setName("Leeo Bee");
         admin.setPassword("password");
         admins.add(admin);
-        Faculty f1 = new Faculty();
-        f1.setId("F-005");
-        f1.setName("George Karabatis");
-        faculties.add(f1);
-        Student s1 = new Student();
-        s1.setId("S-005");
-        s1.setName("Shannon W.");
-        students.add(s1);
-        Class c1 = new Class("C-005","Databse Management","Introduction to Database");
-        classes.add(c1);
-
+        //populate classes,students,and faculties
+        populateDatabase();
 
         Scanner kb = new Scanner(System.in);
         String yesNo = " ";
@@ -111,7 +102,19 @@ public class Main {
 
 
     }//end main
-
+    public static void populateDatabase()
+    {
+        Faculty f1 = new Faculty();
+        f1.setId("F-005");
+        f1.setName("George Karabatis");
+        faculties.add(f1);
+        Student s1 = new Student();
+        s1.setId("S-005");
+        s1.setName("Shannon W.");
+        students.add(s1);
+        Class c1 = new Class("C-005","Databse Management","Introduction to Database");
+        classes.add(c1);
+    }
     public static void enrollStudent(){
         StudentClassConnection studClassC = new StudentClassConnection();
         Scanner kb = new Scanner(System.in);
@@ -218,27 +221,15 @@ public class Main {
             }
 
             public static void showInformation() {
-                System.out.println("-------------------------");
-                System.out.println("All students");
                 for (Student s : students) {
-                    System.out.println("Student ID: " + s.getId());
-                    System.out.println("Student Name " + s.getName());
-                    System.out.println(" ");
+                    System.out.println(s.toString());
                 }
-                System.out.println("-------------------------");
-                System.out.println("All faculties");
                 for (Faculty f : faculties) {
-                    System.out.println("Faculty ID: " + f.getId());
-                    System.out.println("Faculty Name: " + f.getName());
-                    System.out.println(" ");
+                    System.out.println(f.toString());
                 }
-                System.out.println("-------------------------");
-                System.out.println("All classes");
+
                 for (Class c : classes) {
-                    System.out.println("Class ID: " + c.getClassID());
-                    System.out.println("Class Name: " + c.getClassName());
-                    System.out.println("Class Description: " + c.getDescription());
-                    System.out.println(" ");
+                    System.out.println(c.toString());
                 }
                 System.out.println("-------------------------");
                 System.out.println("Faculties and Classes that they teach");
@@ -256,7 +247,6 @@ public class Main {
                         }
                     }
                 }//end big for
-
                 System.out.println("-------------------------");
                 System.out.println("Student and Class that they enroll in");
                 for (StudentClassConnection scc : studentClassConnections) {

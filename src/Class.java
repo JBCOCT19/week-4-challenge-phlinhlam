@@ -35,4 +35,11 @@ public class Class {
     public void setDescription(String description) {
         this.description = description;
     }
+    @Override
+    public String toString() {
+        return "-------------------------" +"\n" +
+                "All Classes" + "\n" +
+                "Class ID: " + getClassID() +"\n"+
+                "Class Name: " + getClassName() + "\n";
+    }
 }

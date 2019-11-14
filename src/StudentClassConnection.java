@@ -46,4 +46,6 @@ public class StudentClassConnection {
     public void setDateEnroll(String dateEnroll) {
         this.dateEnroll = dateEnroll;
     }
+
+
 }

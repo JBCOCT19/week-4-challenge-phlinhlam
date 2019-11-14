@@ -6,6 +6,7 @@ public class Admin extends User {
         super(id, name, email, password);
     }
 
+
     public void showOptions()
     {
         System.out.println("Options: ");
