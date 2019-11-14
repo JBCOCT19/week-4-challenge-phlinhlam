@@ -38,7 +38,8 @@ public class Class {
     @Override
     public String toString() {
         return
-                "Class ID: " + getClassID() +"\n"+
-                "Class Name: " + getClassName() + "\n";
+                "Class ID:      " + getClassID() +"\n"+
+                "Name:          " + getClassName() + "\n"+
+                "Description:   " + getDescription()+"\n";
     }
 }

@@ -9,9 +9,8 @@ public class Faculty extends User {
     }
     @Override
     public String toString() {
-        return
-                "Faculty ID: " + getId() + "\n"+
-                "Name: " + getName() +"\n";
+        return  "Faculty ID:     " + getId() + "\n"+
+                "Name:           " + getName() +"\n";
     }
 
 

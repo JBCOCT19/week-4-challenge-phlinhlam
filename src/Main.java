@@ -61,24 +61,31 @@ public class Main {
                             switch (choice) {
                                 case 1:
                                     addStudent();
+                                    showStudent();
                                     break;
                                 case 2:
                                     addFaculty();
+                                    showFaculty();
                                     break;
                                 case 3:
                                     editStudent();
+                                    showStudent();
                                     break;
                                 case 4:
                                     editFaculty();
+                                    showFaculty();
                                     break;
                                 case 5:
                                     addClasses();
+                                    showClasses();
                                     break;
                                 case 6:
                                     editClasses();
+                                    showClasses();
                                     break;
                                 case 7:
                                     enrollStudent();
+                                    showStudent();
                                     break;
                                 case 8:
                                     assignFacultyToClass();
@@ -93,10 +100,11 @@ public class Main {
                                     System.exit(0);
                                     break;
                             }//end switch
-                            System.out.println("Do you want to continue? (Y/N)");
+                            System.out.println("Do you want to continue with other options? (Y/N)");
                             yesNo = kb.next();
                             System.out.println("");
                         } while (yesNo.equalsIgnoreCase("y"));
+                        System.out.println(a.getName() + ", you have successfully logged out");
                         System.out.println("Thank you for using Bee's School Systems");
                     }//end if log in is correct
                 }//end for
@@ -235,6 +243,32 @@ public class Main {
                 String name = kb.nextLine();
                 s.setName(name);
                 students.add(s);//add student info in students database
+            }
+
+            public static void showStudent()
+            {
+                System.out.println("---------------------------------");
+                System.out.println("All Students");
+                for (Student s : students) {
+                    System.out.println(s.toString());
+                }
+            }
+
+            public static void showFaculty()
+            {
+                System.out.println("---------------------------------");
+                System.out.println("All Faculties");
+                for (Faculty f : faculties) {
+                    System.out.println(f.toString());
+                }
+            }
+            public static void showClasses()
+            {
+                System.out.println("---------------------------------");
+                System.out.println("All Classes");
+                for (Class c : classes) {
+                    System.out.println(c.toString());
+                }
             }
 
             public static void showInformation() {
