@@ -14,10 +14,21 @@ public class Main {
         //populate Admin account
         Admin admin = new Admin();
         admin.setId("Ad-001");
-        admin.setEmail("adminemail@bee.edu");
+        admin.setEmail("admin1@email.com");
         admin.setName("Leeo Bee");
         admin.setPassword("password");
         admins.add(admin);
+        Faculty f1 = new Faculty();
+        f1.setId("F-005");
+        f1.setName("George Karabatis");
+        faculties.add(f1);
+        Student s1 = new Student();
+        s1.setId("S-005");
+        s1.setName("Shannon W.");
+        students.add(s1);
+        Class c1 = new Class("C-005","Databse Management","Introduction to Database");
+        classes.add(c1);
+
 
         Scanner kb = new Scanner(System.in);
         String yesNo = " ";
@@ -60,19 +71,19 @@ public class Main {
                                 addStudent();
                                 break;
                             case 2:
-                                System.out.println("Add faculty method");
+                                addFaculty();
                                 break;
                             case 3:
-                                System.out.println("Edit student");
+                                editStudent();
                                 break;
                             case 4:
-                                System.out.println("edit cfaculty");
+                                editFaculty();
                                 break;
                             case 5:
-                                System.out.println("add class");
+                                addClasses();
                                 break;
                             case 6:
-                                System.out.println("edit class");
+                                editClasses();
                                 break;
                             case 7:
                                 System.out.println("enroll student");
@@ -92,6 +103,7 @@ public class Main {
                             yesNo = kb.next();
                             System.out.println("");
                         } while (yesNo.equalsIgnoreCase("y"));
+                        System.out.println("Thank you for using Bee's School Systems");
                     }//end else if
                 }//end for
 
@@ -100,11 +112,75 @@ public class Main {
 
     }//end main
 
+    public static void editFaculty() {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Please enter the ID of the Faculty that you wish to edit (F-###)");
+        String id = kb.nextLine();
+        for (Faculty f : faculties) {//go into faculties database,
+            if (f.getId().equalsIgnoreCase(id)) {//compare is with user id, if it's equal, do the execution
+                System.out.println("Enter new name of Faculty:");
+                f.setName(kb.nextLine());
+                break;
+            }
+        }//end for loop
+    }
+    public static void editStudent() {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Please enter the ID of the Student that you wish to edit (S-###)");
+        String id = kb.nextLine();
+        for (Student s : students) {//go into students database,
+            if (s.getId().equalsIgnoreCase(id)) {//compare is with user id, if it's equal, do the execution
+                System.out.println("Enter new name of student:");
+                s.setName(kb.nextLine());
+                break;
+            }
+        }//end for loop
+    }
+    public static void editClasses()
+    {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Please enter the ID of the class that you wish to edit (C-###)");
+        String id = kb.nextLine();
+        for(Class c : classes) {//go into classes database,
+                if(c.getClassID().equalsIgnoreCase(id)) {//compare is with user id, if it's equal, do the execution
+                        System.out.println("Enter new name of the class:");
+                        c.setClassName(kb.nextLine());
+                        break;
+                    }
+        }//end for loop
+    }
+    public static void addClasses()
+    {
+        Class c = new Class();
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Please enter the Class ID (C-###)");
+        String id = kb.nextLine();
+        c.setClassID(id);
+        System.out.println("Class Name");
+        String name = kb.nextLine();
+        c.setClassName(name);
+        System.out.println("Class Description");
+        String desc = kb.nextLine();
+        c.setDescription(desc);
+        classes.add(c);//add class to database
+    }
+        public static void addFaculty()
+        {
+            Faculty f = new Faculty();
+            Scanner kb = new Scanner(System.in);
+            System.out.println("Please enter the Faculty ID (F-###)");
+            String id = kb.nextLine();
+            f.setId(id);
+            System.out.println("Faculty Name");
+            String name = kb.nextLine();
+            f.setName(name);
+            faculties.add(f);//add faculty into faculties database
+        }
         public static void addStudent()
         {
                 Student s = new Student();
                 Scanner kb = new Scanner(System.in);
-                System.out.println("Please enter the student ID (S-####)");
+                System.out.println("Please enter the student ID (S-###)");
                 String id = kb.nextLine();
                 s.setId(id);
                 System.out.println("Student Name");
@@ -115,12 +191,29 @@ public class Main {
 
             public static void showInformation()
             {
-
+                System.out.println("-------------------------");
                 System.out.println("All students");
                 for(Student s:students)
                 {
-                    System.out.println(s.getId());
-                    System.out.println(s.getName());
+                    System.out.println("Student ID: "+s.getId());
+                    System.out.println("Student Name "+s.getName());
+                    System.out.println(" ");
+                }
+                System.out.println("-------------------------");
+                System.out.println("All faculties");
+                for(Faculty f: faculties)
+                {
+                    System.out.println("Faculty ID: "+f.getId());
+                    System.out.println("Faculty Name: "+f.getName());
+                    System.out.println(" ");
+                }
+                System.out.println("-------------------------");
+                System.out.println("All classes");
+                for(Class c : classes)
+                {
+                    System.out.println("Class ID: "+c.getClassID());
+                    System.out.println("Class Name: "+c.getClassName());
+                    System.out.println("Class Description: "+c.getDescription());
                     System.out.println(" ");
                 }
             }
